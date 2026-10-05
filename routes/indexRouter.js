@@ -21,4 +21,26 @@ router.get("/", (req, res) => {
   });
 });
 
+router.get("/new", (req, res) => {
+  res.render("form");
+});
+
+router.post("/new", (req, res) => {
+  const { author, message } = req.body;
+
+  messages.push({
+    text: message,
+    user: author,
+    added: new Date(),
+  });
+
+  res.redirect("/");
+});
+
+router.get("/message/:index", (req, res) => {
+  const message = messages[req.params.index];
+
+  res.render("message", { message });
+});
+
 module.exports = router;
