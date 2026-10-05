@@ -16,3 +16,4 @@ A Basic meesage board built with Node.js and Express.
 - Express
 - EJS
 - HTML
+- CSS
