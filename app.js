@@ -13,15 +13,15 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/", indexRouter);
 
-const PORT = 3000;
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(err.statusCode || 500).send(err.message);
+});
+
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, (error) => {
   if (error) {
     throw error;
   }
   console.log(`Running the server by listening on ${PORT}`);
-});
-
-app.use((err, req, res, next) => {
-  console.error(err);
-  res.status(err.statusCode || 500).send(err.message);
 });
